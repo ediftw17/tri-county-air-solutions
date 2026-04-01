@@ -375,6 +375,11 @@
       font-weight: 800;
       color: var(--orange);
       line-height: 1;
+      transition: opacity 0.3s;
+    }
+
+    .stat-num.counting {
+      opacity: 1;
     }
 
     .stat-label {
@@ -1038,19 +1043,19 @@
   <div class="stats-bar">
     <div class="stats-inner">
       <div class="stat">
-        <div class="stat-num">10+</div>
+        <div class="stat-num" data-target="10" data-suffix="+">10+</div>
         <div class="stat-label">Years Serving Shawnee</div>
       </div>
       <div class="stat">
-        <div class="stat-num">5.0★</div>
+        <div class="stat-num" data-target="5.0" data-suffix="★" data-decimal="1">5.0★</div>
         <div class="stat-label">Average Google Rating</div>
       </div>
       <div class="stat">
-        <div class="stat-num">100%</div>
+        <div class="stat-num" data-target="100" data-suffix="%">100%</div>
         <div class="stat-label">Five-Star Reviews</div>
       </div>
       <div class="stat">
-        <div class="stat-num">RUUD</div>
+        <div class="stat-num" data-letters="RUUD">RUUD</div>
         <div class="stat-label">Certified Pro Partner</div>
       </div>
     </div>
@@ -1511,6 +1516,76 @@
       </div>
     </div>
   </footer>
+
+<script>
+  // --- STATS COUNT-UP ---
+  const statsBar = document.querySelector('.stats-bar');
+  let statsAnimated = false;
+
+  function animateStats() {
+    if (statsAnimated) return;
+    statsAnimated = true;
+
+    document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const decimals = parseInt(el.dataset.decimal || '0');
+      const duration = 1600;
+      const startTime = performance.now();
+
+      function tick(now) {
+        const p = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = (target * ease).toFixed(decimals) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+
+    document.querySelectorAll('.stat-num[data-letters]').forEach(el => {
+      const letters = el.dataset.letters.split('');
+      el.textContent = '';
+      letters.forEach((ch, i) => setTimeout(() => { el.textContent += ch; }, 200 + i * 130));
+    });
+  }
+
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) animateStats(); }, { threshold: 0.6 }).observe(statsBar);
+
+  // --- LAZY LOAD IMAGES ---
+  document.querySelectorAll('img').forEach((img, i) => {
+    if (i > 1 && !img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+  });
+
+  // --- PARALLAX on hero photo ---
+  const heroPhoto = document.querySelector('.hero-photo');
+  if (heroPhoto) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight * 1.2) {
+        heroPhoto.style.transform = 'translateY(' + (y * 0.22) + 'px)';
+      }
+    }, { passive: true });
+  }
+
+  // --- FADE-IN on scroll for sections ---
+  const fadeEls = document.querySelectorAll('.section, .stats-bar, .cta-section');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        fadeObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  fadeEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    fadeObserver.observe(el);
+  });
+</script>
 
 </body>
 </html>
