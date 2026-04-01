@@ -957,21 +957,36 @@
       .sticky-cta { display: flex; }
       body { padding-bottom: 76px; }
 
-      .hero { padding: 48px 20px 64px; }
+      /* Hero */
+      .hero { padding: 40px 16px 52px; }
       .hero-sub { font-size: 16px; }
       .hero-actions { flex-direction: column; }
       .hero-actions .btn-primary,
       .hero-actions .btn-secondary { justify-content: center; text-align: center; }
+      .hero-trust { gap: 14px; margin-top: 28px; }
 
-      .section { padding: 52px 20px; }
+      /* Sections */
+      .section { padding: 44px 16px; }
+      .section-header { margin-bottom: 32px; }
+      h2 { font-size: clamp(24px, 6vw, 36px); }
 
-      .process-steps { grid-template-columns: 1fr !important; gap: 28px; }
+      /* Trust badges — 2 column grid */
+      .badges { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+      .badge { padding: 12px 14px; font-size: 13px; gap: 8px; }
+      .badge svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+      /* Process */
+      .process-steps { grid-template-columns: 1fr !important; gap: 24px; }
       .process-steps::before { display: none; }
+      .process-step { display: flex; align-items: flex-start; gap: 16px; text-align: left; }
+      .process-num { margin: 0; flex-shrink: 0; }
 
+      /* CTA */
       .cta-actions { flex-direction: column; align-items: stretch; }
       .cta-actions a { text-align: center; justify-content: center; }
 
-      .badges-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      /* Footer */
+      .footer-bottom { gap: 8px; }
     }
 
     /* EMERGENCY STRIP */
