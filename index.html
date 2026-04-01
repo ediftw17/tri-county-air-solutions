@@ -1567,6 +1567,49 @@
     }, { passive: true });
   }
 
+  // --- PROCESS STEPS SEQUENCE ---
+  const processSteps = document.querySelector('.process-steps');
+  if (processSteps) {
+    const steps = Array.from(processSteps.querySelectorAll('.process-step'));
+
+    // 4 animated blue line overlays — sit on top of the gray ::before line
+    const lineData = [
+      { left: '10%', width: '20%' },
+      { left: '30%', width: '20%' },
+      { left: '50%', width: '20%' },
+      { left: '70%', width: '20%' },
+    ];
+    const lineEls = lineData.map(d => {
+      const el = document.createElement('div');
+      el.style.cssText = `position:absolute;top:27px;height:2px;background:var(--blue-light);z-index:2;left:${d.left};width:${d.width};transform:scaleX(0);transform-origin:left;transition:transform 0.42s cubic-bezier(0.4,0,0.2,1);`;
+      processSteps.appendChild(el);
+      return el;
+    });
+
+    // Start steps invisible
+    steps.forEach(s => {
+      s.style.opacity = '0';
+      s.style.filter = 'blur(7px)';
+      s.style.transform = 'translateY(10px)';
+      s.style.transition = 'opacity 0.48s ease, filter 0.48s ease, transform 0.48s ease';
+    });
+
+    let ran = false;
+    new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting || ran) return;
+      ran = true;
+      steps.forEach((step, i) => {
+        const t = i * 700;
+        setTimeout(() => {
+          step.style.opacity = '1';
+          step.style.filter = 'blur(0)';
+          step.style.transform = 'translateY(0)';
+        }, t);
+        if (i < 4) setTimeout(() => { lineEls[i].style.transform = 'scaleX(1)'; }, t + 320);
+      });
+    }, { threshold: 0.35 }).observe(processSteps);
+  }
+
   // --- FADE-IN on scroll for sections ---
   const fadeEls = document.querySelectorAll('.section, .stats-bar, .cta-section');
   const fadeObserver = new IntersectionObserver((entries) => {
