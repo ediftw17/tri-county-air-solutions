@@ -65,20 +65,16 @@
     }
 
     .nav-logo-icon {
-      width: 40px;
       height: 40px;
-      background: var(--blue);
-      border-radius: 8px;
       display: flex;
       align-items: center;
-      justify-content: center;
       flex-shrink: 0;
     }
 
-    .nav-logo-icon svg {
-      width: 22px;
-      height: 22px;
-      color: white;
+    .nav-logo-icon img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
     }
 
     .nav-logo-text {
@@ -150,6 +146,20 @@
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       pointer-events: none;
     }
+
+    .hero-photo {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: 40%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) { .hero-photo { display: none; } }
 
     .hero-inner {
       max-width: 1200px;
@@ -457,6 +467,14 @@
     }
 
     .service-icon svg { width: 26px; height: 26px; color: var(--blue); }
+
+    .service-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
 
     .service-card h3 {
       font-size: 19px;
@@ -935,11 +953,7 @@
     <div class="nav-inner">
       <a href="#" class="nav-logo">
         <div class="nav-logo-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-        </div>
-        <div>
-          <div class="nav-logo-text">Tri County Air</div>
-          <div class="nav-logo-sub">Shawnee, Oklahoma</div>
+          <img src="https://tricountyok.com/img/tri-county-logo-150-50.jpg" alt="Tri County Air Solutions" />
         </div>
       </a>
       <ul class="nav-links">
@@ -955,6 +969,7 @@
 
   <!-- Hero -->
   <section class="hero">
+    <img class="hero-photo" src="https://tricountyok.com/img/tc-body-01.png" alt="" aria-hidden="true" />
     <div class="hero-inner">
       <div>
         <div class="hero-badge">
@@ -1051,9 +1066,7 @@
       </div>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          </div>
+          <img class="service-img" src="https://tricountyok.com/img/tri-commercial-tech.jpeg" alt="AC Repair technician" />
           <h3>AC Repair</h3>
           <p>Is your air conditioner struggling to cool the house? Our techs diagnose fast and carry parts on the truck, so most repairs are done same-day. We fix all makes and models.</p>
           <a href="#contact" class="service-link">
@@ -1062,9 +1075,7 @@
           </a>
         </div>
         <div class="service-card">
-          <div class="service-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-          </div>
+          <img class="service-img" src="https://tricountyok.com/img/tri-ac.png" alt="AC Installation unit" />
           <h3>AC Installation</h3>
           <p>Replacing an old, inefficient unit? As a RUUD Pro Partner, we install premium systems built for Oklahoma heat, and we'll help you find the right size and model for your home and budget.</p>
           <a href="#contact" class="service-link">
@@ -1073,9 +1084,7 @@
           </a>
         </div>
         <div class="service-card">
-          <div class="service-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
-          </div>
+          <img class="service-img" src="https://tricountyok.com/img/tri-furnace-burner.jpeg" alt="Heating repair furnace burner" />
           <h3>Heating Repair</h3>
           <p>When your furnace or heat pump stops working in the cold, you need a technician you can trust. We show up on time, give you a straight answer, and fix it right without unnecessary upsells.</p>
           <a href="#contact" class="service-link">
@@ -1084,9 +1093,7 @@
           </a>
         </div>
         <div class="service-card">
-          <div class="service-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          </div>
+          <img class="service-img" src="https://tricountyok.com/img/tri-furnace.png" alt="Heating system installation" />
           <h3>Heating Installation</h3>
           <p>Old furnace on its last legs? We install energy-efficient heating systems designed for central Oklahoma winters. We'll walk you through your options and never push more than you need.</p>
           <a href="#contact" class="service-link">
@@ -1301,9 +1308,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           Family Owned &amp; Operated
         </div>
-        <div class="badge">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-          RUUD Pro Partner
+        <div class="badge" style="padding: 8px 16px;">
+          <img src="https://tricountyok.com/img/ruud-pro-partner-logo-black.jpg" alt="RUUD Pro Partner" style="height:36px; width:auto;" />
         </div>
         <div class="badge">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1447,11 +1453,7 @@
         <div class="footer-brand">
           <div class="nav-logo">
             <div class="nav-logo-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-            </div>
-            <div>
-              <div class="nav-logo-text">Tri County Air Solutions</div>
-              <div class="nav-logo-sub">Shawnee, Oklahoma</div>
+              <img src="https://tricountyok.com/img/tri-county-logo-150-50.jpg" alt="Tri County Air Solutions" style="filter: brightness(0) invert(1);" />
             </div>
           </div>
           <p>Family-owned HVAC serving Shawnee, Tecumseh, and central Oklahoma for over a decade. Licensed, insured, and RUUD Pro Partner certified.</p>
