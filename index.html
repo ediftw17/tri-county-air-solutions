@@ -1581,8 +1581,8 @@
     ];
     const lineEls = lineData.map(d => {
       const el = document.createElement('div');
-      el.style.cssText = `position:absolute;top:27px;height:2px;background:var(--blue-light);z-index:2;left:${d.left};width:${d.width};transform:scaleX(0);transform-origin:left;transition:transform 0.42s cubic-bezier(0.4,0,0.2,1);`;
-      processSteps.appendChild(el);
+      el.style.cssText = `position:absolute;top:27px;height:2px;background:var(--blue-light);z-index:1;left:${d.left};width:${d.width};transform:scaleX(0);transform-origin:left;transition:transform 0.42s cubic-bezier(0.4,0,0.2,1);`;
+      processSteps.insertBefore(el, processSteps.firstChild);
       return el;
     });
 
