@@ -912,6 +912,23 @@
       .footer-bottom { flex-direction: column; text-align: center; }
     }
 
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    .gallery-img {
+      width: 100%; border-radius: 12px; object-fit: cover; height: 280px;
+    }
+    .gallery-img-tall { height: 360px; }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
+      .gallery-img, .gallery-img-tall { height: 240px; }
+    }
+
     /* STICKY MOBILE CTA */
     .sticky-cta {
       display: none;
@@ -1405,10 +1422,10 @@
         <h2>Real Work. Real Results.</h2>
         <p class="section-desc">Our trucks are on the road every day across Shawnee and central Oklahoma.</p>
       </div>
-      <div style="display:grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 16px; align-items: center;">
-        <img src="https://tricountyok.com/img/tc-body-01.png" alt="Tri County Air Solutions trucks on a job site" style="width:100%; border-radius:12px; object-fit:cover; height:280px;" />
-        <img src="https://tricountyok.com/img/tc-body-02.png" alt="HVAC unit being crane-lifted onto a roof" style="width:100%; border-radius:12px; object-fit:cover; height:360px;" />
-        <img src="https://tricountyok.com/img/tc-body-03.png" alt="Tri County Air Solutions truck at a new construction site" style="width:100%; border-radius:12px; object-fit:cover; height:280px;" />
+      <div class="gallery-grid">
+        <img src="https://tricountyok.com/img/tc-body-01.png" alt="Tri County Air Solutions trucks on a job site" class="gallery-img" />
+        <img src="https://tricountyok.com/img/tc-body-02.png" alt="HVAC unit being crane-lifted onto a roof" class="gallery-img gallery-img-tall" />
+        <img src="https://tricountyok.com/img/tc-body-03.png" alt="Tri County Air Solutions truck at a new construction site" class="gallery-img" />
       </div>
     </div>
   </section>
