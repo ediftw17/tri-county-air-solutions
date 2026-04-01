@@ -1586,26 +1586,30 @@
       return el;
     });
 
-    // Start steps invisible
+    // Hide sub-elements individually: num, h4, p
+    const hide = 'opacity:0;filter:blur(6px);transform:translateY(8px);transition:opacity 0.38s ease,filter 0.38s ease,transform 0.38s ease;';
     steps.forEach(s => {
-      s.style.opacity = '0';
-      s.style.filter = 'blur(7px)';
-      s.style.transform = 'translateY(10px)';
-      s.style.transition = 'opacity 0.48s ease, filter 0.48s ease, transform 0.48s ease';
+      s.querySelector('.process-num').style.cssText += hide;
+      s.querySelector('h4').style.cssText += hide;
+      s.querySelector('p').style.cssText += hide;
     });
+
+    function reveal(el) {
+      el.style.opacity = '1';
+      el.style.filter = 'blur(0)';
+      el.style.transform = 'translateY(0)';
+    }
 
     let ran = false;
     new IntersectionObserver(([e]) => {
       if (!e.isIntersecting || ran) return;
       ran = true;
       steps.forEach((step, i) => {
-        const t = i * 700;
-        setTimeout(() => {
-          step.style.opacity = '1';
-          step.style.filter = 'blur(0)';
-          step.style.transform = 'translateY(0)';
-        }, t);
-        if (i < 4) setTimeout(() => { lineEls[i].style.transform = 'scaleX(1)'; }, t + 320);
+        const base = i * 750;
+        setTimeout(() => reveal(step.querySelector('.process-num')), base);
+        setTimeout(() => reveal(step.querySelector('h4')),           base + 180);
+        setTimeout(() => reveal(step.querySelector('p')),            base + 330);
+        if (i < 4) setTimeout(() => { lineEls[i].style.transform = 'scaleX(1)'; }, base + 480);
       });
     }, { threshold: 0.35 }).observe(processSteps);
   }
